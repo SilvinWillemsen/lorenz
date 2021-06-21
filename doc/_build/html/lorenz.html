@@ -156,18 +156,13 @@ these variables at the current time step (<span class="math notranslate nohighli
 </dd></dl>
 
 </section>
-<section id="module-lorenz.lorenzAttractor">
-<span id="lorenz-lorenzattractor-module"></span><h2>lorenz.lorenzAttractor module<a class="headerlink" href="#module-lorenz.lorenzAttractor" title="Permalink to this headline">¶</a></h2>
-<p>Created on Wed Jun 16 13:33:34 2021</p>
-<p>&#64;author: SilvinW</p>
-</section>
 <section id="module-lorenz.plotting">
 <span id="lorenz-plotting-module"></span><h2>lorenz.plotting module<a class="headerlink" href="#module-lorenz.plotting" title="Permalink to this headline">¶</a></h2>
 <p>Created on Thu Jun 17 08:44:05 2021</p>
 <p>&#64;author: SilvinW</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="lorenz.plotting.plotLorenz">
-<span class="sig-prename descclassname"><span class="pre">lorenz.plotting.</span></span><span class="sig-name descname"><span class="pre">plotLorenz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vecs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scatter_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lorenz/plotting.html#plotLorenz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lorenz.plotting.plotLorenz" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">lorenz.plotting.</span></span><span class="sig-name descname"><span class="pre">plotLorenz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vecs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scatter_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lorenz/plotting.html#plotLorenz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lorenz.plotting.plotLorenz" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function that plots the result of the ODE simulation lorenz.solver.solve(…)
 and saves plots to .pdf files.</p>
 <p>The plots use the matplotlib.pyplot functionality and the scatter function
@@ -187,6 +182,9 @@ velocity data stored in vel_vecs.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vecs</span> <span class="p">:</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="p">(</span><span class="n">Numpy</span><span class="p">)</span> <span class="n">Arrays</span> <span class="n">of</span> <span class="n">floats</span>
     <span class="n">The</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span><span class="o">-</span><span class="n">coordinate</span> <span class="n">over</span> <span class="n">time</span> <span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)[</span><span class="n">n</span><span class="p">])</span><span class="o">.</span>
 
+<span class="n">dt</span> <span class="p">:</span> <span class="nb">float</span>
+    <span class="n">Time</span> <span class="n">step</span> <span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span>
+
 <span class="n">file_name</span> <span class="p">:</span> <span class="n">string</span><span class="p">,</span> <span class="n">optional</span>
     <span class="n">Name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">file</span> <span class="n">calling</span> <span class="n">this</span> <span class="n">function</span><span class="o">.</span> <span class="n">Needed</span> <span class="k">for</span> <span class="n">storing</span> <span class="n">files</span>
     <span class="ow">in</span> <span class="n">the</span> <span class="n">correct</span> <span class="n">folder</span><span class="o">.</span> <span class="n">The</span> <span class="n">default</span> <span class="ow">is</span> <span class="s2">&quot;&quot;</span> <span class="ow">and</span> <span class="n">no</span> <span class="n">files</span> <span class="n">will</span> <span class="n">be</span>
@@ -202,6 +200,85 @@ velocity data stored in vel_vecs.</p>
 </div>
 <p>OUTPUT:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">None</span><span class="o">.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="module-lorenz.run">
+<span id="lorenz-run-module"></span><h2>lorenz.run module<a class="headerlink" href="#module-lorenz.run" title="Permalink to this headline">¶</a></h2>
+<p>Created on Wed Jun 16 13:33:34 2021</p>
+<p>&#64;author: SilvinW</p>
+<p>From this file you can run the solver and plot the results (without saving the
+plots and data).</p>
+<dl class="simple">
+<dt>Variables that can be changed are:</dt><dd><dl class="simple">
+<dt>The initial conditions <span class="math notranslate nohighlight">\(x[0]\)</span>, <span class="math notranslate nohighlight">\(y[0]\)</span> and <span class="math notranslate nohighlight">\(z[0]\)</span></dt><dd><ul class="simple">
+<li><p>x0</p></li>
+<li><p>y0</p></li>
+<li><p>z0</p></li>
+</ul>
+</dd>
+<dt>The time step <span class="math notranslate nohighlight">\(t_\delta\)</span></dt><dd><ul class="simple">
+<li><p>dt</p></li>
+</ul>
+</dd>
+<dt>The number of iterations <span class="math notranslate nohighlight">\(N\)</span></dt><dd><ul class="simple">
+<li><p>N</p></li>
+</ul>
+</dd>
+<dt>The free variables of the ODE system <span class="math notranslate nohighlight">\(\sigma\)</span>, <span class="math notranslate nohighlight">\(\beta\)</span> and <span class="math notranslate nohighlight">\(\rho\)</span></dt><dd><ul class="simple">
+<li><p>sigma</p></li>
+<li><p>beta</p></li>
+<li><p>rho</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="module-lorenz.solver">
+<span id="lorenz-solver-module"></span><h2>lorenz.solver module<a class="headerlink" href="#module-lorenz.solver" title="Permalink to this headline">¶</a></h2>
+<p>Created on Fri Jun 18 17:33:05 2021</p>
+<p>&#64;author: SilvinW</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="lorenz.solver.solve">
+<span class="sig-prename descclassname"><span class="pre">lorenz.solver.</span></span><span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.002</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lorenz/solver.html#solve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lorenz.solver.solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>INPUT:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="p">:</span> <span class="nb">float</span>
+<span class="n">Initial</span> <span class="n">condition</span> <span class="n">of</span> <span class="n">the</span> <span class="n">x</span><span class="o">-</span><span class="n">coordinate</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">.</span>
+
+<span class="n">y</span> <span class="p">:</span> <span class="nb">float</span>
+<span class="n">Initial</span> <span class="n">condition</span> <span class="n">of</span> <span class="n">the</span> <span class="n">y</span><span class="o">-</span><span class="n">coordinate</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">.</span>
+
+<span class="n">z</span> <span class="p">:</span> <span class="nb">float</span>
+<span class="n">Initial</span> <span class="n">condition</span> <span class="n">of</span> <span class="n">the</span> <span class="n">z</span><span class="o">-</span><span class="n">coordinate</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">.</span>
+
+<span class="n">sigma</span> <span class="p">:</span> <span class="nb">float</span>
+<span class="n">Prandtl</span> <span class="n">number</span> <span class="p">(</span><span class="n">m</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="n">s</span><span class="p">)</span><span class="o">.</span>
+
+<span class="n">beta</span> <span class="p">:</span> <span class="nb">float</span>
+<span class="n">Free</span> <span class="n">parameter</span><span class="o">.</span>
+
+<span class="n">rho</span> <span class="p">:</span> <span class="nb">float</span>
+<span class="n">Free</span> <span class="n">parameter</span><span class="o">.</span>
+
+<span class="n">dt</span> <span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">optional</span>
+<span class="n">Time</span> <span class="n">step</span> <span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span> <span class="n">The</span> <span class="n">default</span> <span class="ow">is</span> <span class="mf">0.002</span><span class="o">.</span>
+
+<span class="n">N</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">optional</span>
+<span class="n">Number</span> <span class="n">of</span> <span class="n">iterations</span><span class="o">.</span> <span class="n">The</span> <span class="n">default</span> <span class="ow">is</span> <span class="mf">5000.</span>
+</pre></div>
+</div>
+<p>OUTPUT:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xVec</span> <span class="p">:</span> <span class="p">(</span><span class="n">Numpy</span><span class="p">)</span> <span class="n">Array</span> <span class="n">of</span> <span class="n">floats</span>
+<span class="n">The</span> <span class="n">x</span><span class="o">-</span><span class="n">coordinate</span> <span class="n">over</span> <span class="n">time</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">])</span><span class="o">.</span>
+
+<span class="n">yVec</span> <span class="p">:</span> <span class="p">(</span><span class="n">Numpy</span><span class="p">)</span> <span class="n">Array</span> <span class="n">of</span> <span class="n">floats</span>
+<span class="n">The</span> <span class="n">y</span><span class="o">-</span><span class="n">coordinate</span> <span class="n">over</span> <span class="n">time</span> <span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">])</span><span class="o">.</span>
+
+<span class="n">zVec</span> <span class="p">:</span> <span class="p">(</span><span class="n">Numpy</span><span class="p">)</span> <span class="n">Array</span> <span class="n">of</span> <span class="n">floats</span>
+<span class="n">The</span> <span class="n">z</span><span class="o">-</span><span class="n">coordinate</span> <span class="n">over</span> <span class="n">time</span> <span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="n">n</span><span class="p">])</span><span class="o">.</span>
 </pre></div>
 </div>
 </dd></dl>

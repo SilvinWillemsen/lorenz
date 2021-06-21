@@ -1,5 +1,5 @@
 .. lorenz documentation master file, created by
-   sphinx-quickstart on Thu Jun 17 10:27:57 2021.
+   sphinx-quickstart on Mon Jun 21 11:13:52 2021.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
