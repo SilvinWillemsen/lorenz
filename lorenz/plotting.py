@@ -8,6 +8,8 @@ Created on Thu Jun 17 08:44:05 2021
 """
 import matplotlib.pyplot as plt
 import numpy as np
+import time
+
 
 def _plot2D (vecs, vel_vecs, num_hor, num_vert, idx_to_plot, scatter_size):
     
@@ -46,8 +48,8 @@ def _plot2D (vecs, vel_vecs, num_hor, num_vert, idx_to_plot, scatter_size):
     """
     
     # initialise figure
-    fig = plt.figure()
-
+    fig = plt.figure(figsize=(7, 5))
+    fig.add_axes([0.05, 0.1, 0.8, 0.8])
     axis_names = ['x', 'y', 'z']
     vel_vec = np.sqrt(vel_vecs[num_hor]**2 + vel_vecs[num_vert]**2);
     
@@ -64,11 +66,13 @@ def _plot2D (vecs, vel_vecs, num_hor, num_vert, idx_to_plot, scatter_size):
     plt.xlabel (axis_names[num_hor])
     plt.ylabel (axis_names[num_vert])
     
+    plt.title('2D plot of (' + axis_names[num_hor] + ',' + axis_names[num_vert] + ') view')
+
     # add grid
     plt.grid (True)
     
     # add colourbar
-    cbaxes = fig.add_axes([0.95, 0.1, 0.03, 0.8]) 
+    cbaxes = fig.add_axes([0.88, 0.1, 0.03, 0.8]) 
     cb = plt.colorbar(p, cax = cbaxes)  
     cbaxes.set_ylabel('velocity', rotation=0, position=(1,1.05))
     
@@ -76,11 +80,10 @@ def _plot2D (vecs, vel_vecs, num_hor, num_vert, idx_to_plot, scatter_size):
     
 def plotLorenz (vecs, dt, file_name = "", step_size = 5, scatter_size = 10):
     
-    
     """
     
     Function that plots the result of the ODE simulation lorenz.solver.solve(...)
-    and saves plots to .pdf files.
+    and saves plots to .pdf files if file_name != "".
     
     The plots use the matplotlib.pyplot functionality and the scatter function
     and colourcode the plots based on the velocity of the system. 
@@ -124,11 +127,18 @@ def plotLorenz (vecs, dt, file_name = "", step_size = 5, scatter_size = 10):
 
 
     """
+
     
     if file_name == "":
         save_files = False
+        print ('Generating plots...')
+
     else:
         save_files = True
+        print ('Generating plots and saving files...')
+
+        
+    tic = time.time();
     
     # Initialise velocity vectors for colouring the plots
     N = vecs[0].shape[0]
@@ -169,7 +179,7 @@ def plotLorenz (vecs, dt, file_name = "", step_size = 5, scatter_size = 10):
     # PLOTTING 3D #
 
     fig = plt.figure()
-    ax = plt.subplot (projection='3d')
+    ax = plt.subplot (projection='3d', position=[0.05, 0.1, 0.8, 0.8])
     ax.scatter (vecs[0][0],
                 vecs[1][0],
                 vecs[2][0],
@@ -185,10 +195,18 @@ def plotLorenz (vecs, dt, file_name = "", step_size = 5, scatter_size = 10):
     ax.set_xlabel('x')
     ax.set_ylabel('y')
     ax.set_zlabel('z')
-    
+    ax.set_title('3D plot')
+
     cbaxes = fig.add_axes([0.85, 0.1, 0.03, 0.8]) 
     cb = plt.colorbar(p, cax = cbaxes)  
     cbaxes.set_ylabel('velocity', rotation=0, position=(0, 0.99))
     
     if save_files:
         plt.savefig('output_files/' + file_name + '_output/xyzPlot.pdf')
+
+    toc = time.time() - tic
+    if save_files:
+        print (f'Done generating plots and saving files! It took {toc:1.3} seconds to generate the plots and save the files.')
+
+    else:
+        print (f'Done generating plots! It took {toc:1.3} seconds to generate the plots.')

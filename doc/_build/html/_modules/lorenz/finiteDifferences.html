@@ -33,9 +33,12 @@
   <h1>Source code for lorenz.finiteDifferences</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 
-<span class="sd">Created on Wed Jun 16 16:37:08 2021</span>
+<span class="sd">This file contains three functions that compute :math:`x[n+1]`, :math:`y[n+1]` </span>
+<span class="sd">and :math:`z[n+1]` based on known values of the system :math:`x[n]`, </span>
+<span class="sd">:math:`y[n]`and :math:`z[n]`</span>
 
-<span class="sd">@author: SilvinW</span>
+<span class="sd">The last function implements these functions and gets called from a loop in </span>
+<span class="sd">the solver module.</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 
@@ -130,7 +133,7 @@
 
 
 
-<div class="viewcode-block" id="update_system_state"><a class="viewcode-back" href="../../lorenz.html#lorenz.finiteDifferences.update_system_state">[docs]</a><span class="k">def</span> <span class="nf">update_system_state</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
+<div class="viewcode-block" id="update_system_state"><a class="viewcode-back" href="../../lorenz.html#lorenz.finiteDifferences.update_system_state">[docs]</a><span class="k">def</span> <span class="nf">update_system_state</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">    Function to calculate the values of :math:`x`, :math:`y`, and :math:`z` </span>
@@ -140,18 +143,18 @@
 
 <span class="sd">    INPUT::</span>
 <span class="sd">        </span>
-<span class="sd">        sigma : float</span>
-<span class="sd">            Prandtl number.</span>
-<span class="sd">        beta : float</span>
-<span class="sd">            Free parameter.</span>
-<span class="sd">        rho : float</span>
-<span class="sd">            Free parameter.</span>
 <span class="sd">        x : float</span>
 <span class="sd">            Current value of coordinate x (x[n]).</span>
 <span class="sd">        y : float</span>
 <span class="sd">            Current value of coordinate y (y[n]).</span>
 <span class="sd">        z : float</span>
 <span class="sd">            Current value of coordinate z (z[n]).</span>
+<span class="sd">        sigma : float</span>
+<span class="sd">            Free parameter.</span>
+<span class="sd">        beta : float</span>
+<span class="sd">            Free parameter.</span>
+<span class="sd">        rho : float</span>
+<span class="sd">            Free parameter.</span>
 <span class="sd">        dt : float</span>
 <span class="sd">            Time step (s).</span>
 

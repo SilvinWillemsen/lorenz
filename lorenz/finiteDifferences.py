@@ -1,8 +1,11 @@
 """
 
-Created on Wed Jun 16 16:37:08 2021
+This file contains three functions that compute :math:`x[n+1]`, :math:`y[n+1]` 
+and :math:`z[n+1]` based on known values of the system :math:`x[n]`, 
+:math:`y[n]`and :math:`z[n]`
 
-@author: SilvinW
+The last function implements these functions and gets called from a loop in 
+the solver module.
 
 """
 
@@ -97,7 +100,7 @@ def forward_diff_z(beta, x, y, z, dt):
 
 
 
-def update_system_state(sigma, beta, rho, x, y, z, dt):
+def update_system_state(x, y, z, sigma, beta, rho, dt):
     """
 
     Function to calculate the values of :math:`x`, :math:`y`, and :math:`z` 
@@ -107,18 +110,18 @@ def update_system_state(sigma, beta, rho, x, y, z, dt):
 
     INPUT::
         
-        sigma : float
-            Prandtl number.
-        beta : float
-            Free parameter.
-        rho : float
-            Free parameter.
         x : float
             Current value of coordinate x (x[n]).
         y : float
             Current value of coordinate y (y[n]).
         z : float
             Current value of coordinate z (z[n]).
+        sigma : float
+            Free parameter.
+        beta : float
+            Free parameter.
+        rho : float
+            Free parameter.
         dt : float
             Time step (s).
 

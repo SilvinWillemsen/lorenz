@@ -1,17 +1,13 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Jun 18 17:33:05 2021
-
-@author: SilvinW
-"""
-
 
 import lorenz.finiteDifferences as FD
 import numpy as np
+import time
+
 
 def solve (x, y, z, sigma, beta, rho, dt = 0.002, N = 5000):
     """
+
+    This function solves the Lorenz Attractor ODE system using Euler's method.
 
     INPUT::
         
@@ -41,14 +37,16 @@ def solve (x, y, z, sigma, beta, rho, dt = 0.002, N = 5000):
 
     OUTPUT::
     
-        xVec : (Numpy) Array of floats
-        The x-coordinate over time (x[n]).
-        
-        yVec : (Numpy) Array of floats
-        The y-coordinate over time (y[n]).
-        
-        zVec : (Numpy) Array of floats
-        The z-coordinate over time (z[n]).
+        Tuple of the following arrays:
+                
+            xVec : (Numpy) Array of floats
+            The x-coordinate over time (x[n]).
+            
+            yVec : (Numpy) Array of floats
+            The y-coordinate over time (y[n]).
+            
+            zVec : (Numpy) Array of floats
+            The z-coordinate over time (z[n]).
          
             
     """
@@ -58,12 +56,18 @@ def solve (x, y, z, sigma, beta, rho, dt = 0.002, N = 5000):
     yVec = np.zeros(N);
     zVec = np.zeros(N);
 
+    print('Simulation started...')
+    tic = time.time();
+
     # main loop
     for i in range(N):
-        x, y, z = FD.update_system_state (sigma, beta, rho, x, y, z, dt)
+        x, y, z = FD.update_system_state (x, y, z, sigma, beta, rho, dt)
         xVec[i] = x
         yVec[i] = y
         zVec[i] = z
+        
+    toc = time.time() - tic
+    print(f'Simulation finished! It took {toc:1.3} seconds to simulate.')
         
     #return the temporal vectors
     return (xVec, yVec, zVec)

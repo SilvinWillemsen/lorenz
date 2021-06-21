@@ -18,8 +18,7 @@ Variables that can be changed are:
     The number of iterations :math:`N`
         - N
     
-    The free variables of the ODE system :math:`\\sigma`, :math:`\\beta` and 
-    :math:`\\rho`
+    The free variables of the ODE system :math:`\\sigma`, :math:`\\beta` and :math:`\\rho`
         - sigma
         - beta
         - rho
@@ -56,4 +55,3 @@ xVec, yVec, zVec = solver.solve (x0, y0, z0, sigma, beta, rho)
 
 # plot the results
 plotting.plotLorenz ((xVec, yVec, zVec), dt)
-

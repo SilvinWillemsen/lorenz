@@ -4,22 +4,26 @@
 
 This file is called from each individual case<number>.py file and generates the data and plots for each case.
 
-The data 
+The data can be simulated or loaded from disk. 
+
 """
 import sys
 sys.path.append('../')
 
 import os
 import h5py
-from lorenz.solver import solve
 import pandas as pd
+import time
+
+from lorenz.solver import solve
 from lorenz.plotting import plotLorenz
 
 
 
-def case_generation(initial_conditions, case_number, action, file_name, dt, N):
+def generate_data_and_figures(initial_conditions, case_number, action, file_name, dt, N):
     """
-    
+
+    Function that generates the data and figures for a certain case.
 
     INPUT:: 
         
@@ -50,7 +54,6 @@ def case_generation(initial_conditions, case_number, action, file_name, dt, N):
     
         scheme_variables = pd.read_csv('scheme_variables.csv')        
         
-        print('Simulation started...')
         x0 = initial_conditions[0]
         y0 = initial_conditions[1]
         z0 = initial_conditions[2]
@@ -58,21 +61,26 @@ def case_generation(initial_conditions, case_number, action, file_name, dt, N):
         simulation_result = solve(x0, y0, z0, scheme_variables.loc[case_number-1, 'sigma'],
                                               scheme_variables.loc[case_number-1, 'beta'],
                                               scheme_variables.loc[case_number-1, 'rho'], dt, N)
-        print('Simulation finished!')
+    
         
         # save data
         print ('Saving data...')
+        tic = time.time();
+        
         f = h5py.File('output_files/' + file_name + '_output/simulation_result.hdf5', 'w')
         f.create_dataset('xyzData', data = simulation_result)
         f.create_dataset('dt', data = dt)
         f.close()
-        print ('Data saved!')
+        
+        toc = time.time() - tic
+        print (f'Data saved! It took {toc:1.3} seconds to save the data.')
         
     elif action == 'load':
         # Once the simulation has and the data has been saved, the data can be 
         # loaded instead of simulated again.
         print ('Loading data...')
-        
+        tic = time.time();
+
         try:
             f = h5py.File('output_files/' + file_name + '_output/simulation_result.hdf5', 'r')
         except OSError:
@@ -83,10 +91,10 @@ def case_generation(initial_conditions, case_number, action, file_name, dt, N):
         dt = f['dt'][...]
 
         f.close()
-        print ('Data loaded!')
+        
+        toc = time.time() - tic
+        print (f'Data loaded! It took {toc:1.3} seconds to load the data.')
     
     
     # plot and save plots to pdf
-    print ('Generating plots...')
     plotLorenz(simulation_result, dt, file_name)
-    print ('Done generating plots!')
