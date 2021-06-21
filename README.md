@@ -14,9 +14,9 @@ Refer to report.pdf for a report on this project.
 
 
 The structure of this repository is as follows (please refer to /doc/_build/html/index.html for a full explanation of the module and functions):
-    lorenz (package)  
-        __init__.py  
-        run.py: Run this file to simulate the Lorenz attractor.  
+&ensp;    lorenz (package)  
+ &ensp;       __init__.py  
+&ensp;        run.py: Run this file to simulate the Lorenz attractor.  
         solver.py:  Solves the system.  
         finiteDifferences.py: Used by solver.py to solve the equations.  
         plotting.py: Plots the results.  
