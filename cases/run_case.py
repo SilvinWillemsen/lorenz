@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 
 This file generates the data and plots for a case. Change the 'case' variable
@@ -8,10 +6,9 @@ to a number between 1 and 5 (included). The initial conditions
 :math:`t_{\\delta}` and the number of iterations :math:`N`.
 
 The data is generated and saved to a file in a folder that is dependent on the 
-case number.
-
-Once the data has been generated and saved to disk the 'action' variable can
-be changed from 'simulate' to 'load', to load the data from disk instead.
+case number. Once the data has been generated and saved to disk the 'action'
+variable can be changed from 'simulate' to 'load', to load the last-saved data 
+from disk instead.
 
 """
 
@@ -19,7 +16,7 @@ from generate_data_and_figures import generate_data_and_figures
 
 
 # case number 1-5 
-case = 5
+case = 1
 
 # action can be 'simulate' or 'load'
 action = 'simulate'
@@ -38,4 +35,4 @@ N = 10000
 folder_name = 'case' + str(case)
 
 # call case_generation function
-generate_data_and_figures (initial_conditions, case, action, folder_name, dt, N)
+generate_data_and_figures (initial_conditions, case, action, folder_name, dt, N)    

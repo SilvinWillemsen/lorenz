@@ -1,3 +1,12 @@
+"""
+
+File contining solve function that solves the Lorenz Attractor system of ODEs
+using the finiteDifferences module.
+
+It also times how long the simulation lasted and prints it to the console. 
+
+"""
+
 
 import lorenz.finiteDifferences as FD
 import numpy as np

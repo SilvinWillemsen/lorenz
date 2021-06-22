@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 """
     
-    File to generate scheme_variables.csv containing the values for variables :math:`sigma`, :math:`beta` and :math:`rho` for all 5 cases
+    File to generate scheme_variables.csv containing the values for variables 
+    :math:`sigma`, :math:`beta` and :math:`rho` for all 5 cases
 
 """
 
@@ -14,5 +15,9 @@ scheme_variables = [[10.0, 8/3, 6.0],
                     [10.0, 8/3, 28.0],
                     [14, 8/3, 28],
                     [14, 13/3, 28]]
+
+# put variables in a pandas.DataFrame
 variables_data_frame = pd.DataFrame (scheme_variables, columns=['sigma', 'beta', 'rho'])
+
+# save DataFrame to .csv
 variables_data_frame.to_csv('scheme_variables.csv')

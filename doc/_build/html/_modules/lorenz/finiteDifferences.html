@@ -37,8 +37,8 @@
 <span class="sd">and :math:`z[n+1]` based on known values of the system :math:`x[n]`, </span>
 <span class="sd">:math:`y[n]`and :math:`z[n]`</span>
 
-<span class="sd">The last function implements these functions and gets called from a loop in </span>
-<span class="sd">the solver module.</span>
+<span class="sd">The update_system_state function implements these functions and gets called </span>
+<span class="sd">from a loop in the solver module.</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 
@@ -134,6 +134,7 @@
 
 
 <div class="viewcode-block" id="update_system_state"><a class="viewcode-back" href="../../lorenz.html#lorenz.finiteDifferences.update_system_state">[docs]</a><span class="k">def</span> <span class="nf">update_system_state</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
+    
     <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">    Function to calculate the values of :math:`x`, :math:`y`, and :math:`z` </span>

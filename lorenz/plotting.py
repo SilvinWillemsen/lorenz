@@ -1,9 +1,8 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
-Created on Thu Jun 17 08:44:05 2021
 
-@author: SilvinW
+The main function plotLorenz plots the output of the result provided by 
+solver.solve. The output includes 3 2D plots and 1 3D plot. An internal 
+function _plot2D handles the 2D plots.
 
 """
 import matplotlib.pyplot as plt
@@ -23,17 +22,19 @@ def _plot2D (vecs, vel_vecs, num_hor, num_vert, idx_to_plot, scatter_size):
     INPUT::  
         
         vecs : tuple (3) of (Numpy) Arrays of floats
-            The (x, y, z)-coordinate over time ((x, y, z)[n]). Columns contain
-            x,y and z respectively.
+            The (x, y, z)-coordinate over time ((x, y, z)[n]). Columns 0, 1,
+            and 2 contain x[n], y[n] and z[n] respectively.
         
         vel_vecs : tuple (3) of (Numpy) Arrays of floats
             The velocities of x, y and z respectively.
     
         num_hor : (Numpy) Arrays of floats
-            What column of vecs and vel_vecs to use for the horizontal (x) axis.
+            What column of vecs and vel_vecs to use for the horizontal (x) 
+            axis of the plot.
         
         num_vert : (Numpy) Arrays of floats
-            What column of vecs and vel_vecs to use for the vertical (y) axis.
+            What column of vecs and vel_vecs to use for the vertical (y) axis
+            of the plot.
 
         idx_to_plot : range
             Range object containing the temporal indices to plot.
@@ -64,7 +65,7 @@ def _plot2D (vecs, vel_vecs, num_hor, num_vert, idx_to_plot, scatter_size):
        
     # add axis labels
     plt.xlabel (axis_names[num_hor])
-    plt.ylabel (axis_names[num_vert])
+    plt.ylabel (axis_names[num_vert])    
     
     plt.title('2D plot of (' + axis_names[num_hor] + ',' + axis_names[num_vert] + ') view')
 
@@ -73,7 +74,7 @@ def _plot2D (vecs, vel_vecs, num_hor, num_vert, idx_to_plot, scatter_size):
     
     # add colourbar
     cbaxes = fig.add_axes([0.88, 0.1, 0.03, 0.8]) 
-    cb = plt.colorbar(p, cax = cbaxes)  
+    plt.colorbar(p, cax = cbaxes)  
     cbaxes.set_ylabel('velocity', rotation=0, position=(1,1.05))
     
     
@@ -83,7 +84,7 @@ def plotLorenz (vecs, dt, file_name = "", step_size = 5, scatter_size = 10):
     """
     
     Function that plots the result of the ODE simulation lorenz.solver.solve(...)
-    and saves plots to .pdf files if file_name != "".
+    and saves plots to .pdf files if file_name is not empty ("").
     
     The plots use the matplotlib.pyplot functionality and the scatter function
     and colourcode the plots based on the velocity of the system. 
@@ -146,8 +147,6 @@ def plotLorenz (vecs, dt, file_name = "", step_size = 5, scatter_size = 10):
     y_vel = np.zeros(N)
     z_vel = np.zeros(N)
 
-    dt = 0.002 # DONT FORGET TO CHANGE
-
     x_vel = (vecs[0][1:] - vecs[0][0:-1]) / dt
     y_vel = (vecs[1][1:] - vecs[1][0:-1]) / dt
     z_vel = (vecs[2][1:] - vecs[2][0:-1]) / dt
@@ -198,15 +197,15 @@ def plotLorenz (vecs, dt, file_name = "", step_size = 5, scatter_size = 10):
     ax.set_title('3D plot')
 
     cbaxes = fig.add_axes([0.85, 0.1, 0.03, 0.8]) 
-    cb = plt.colorbar(p, cax = cbaxes)  
+    plt.colorbar(p, cax = cbaxes)  
     cbaxes.set_ylabel('velocity', rotation=0, position=(0, 0.99))
     
     if save_files:
         plt.savefig('output_files/' + file_name + '_output/xyzPlot.pdf')
 
     toc = time.time() - tic
+    
     if save_files:
         print (f'Done generating plots and saving files! It took {toc:1.3} seconds to generate the plots and save the files.')
-
     else:
         print (f'Done generating plots! It took {toc:1.3} seconds to generate the plots.')

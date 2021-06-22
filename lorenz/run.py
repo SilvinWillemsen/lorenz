@@ -1,27 +1,25 @@
 """
-Created on Wed Jun 16 13:33:34 2021
-
-@author: SilvinW
 
 From this file you can run the solver and plot the results (without saving the
 plots and data).
 
 Variables that can be changed are:
     The initial conditions :math:`x[0]`, :math:`y[0]` and :math:`z[0]`
-        - x0
-        - y0
-        - z0
+    - x0
+    - y0
+    - z0
         
     The time step :math:`t_\\delta`
-        - dt
+    - dt
        
     The number of iterations :math:`N`
-        - N
+    - N
     
-    The free variables of the ODE system :math:`\\sigma`, :math:`\\beta` and :math:`\\rho`
-        - sigma
-        - beta
-        - rho
+    The free variables of the ODE system :math:`\\sigma`, :math:`\\beta` and 
+    :math:`\\rho`
+    - sigma
+    - beta
+    - rho
 
 """
 
@@ -43,7 +41,7 @@ z0 = 1.0
 dt = 0.002
 
 # number of iterations
-N = 5000
+N = 10000
 
 # free variables
 sigma = 10.0

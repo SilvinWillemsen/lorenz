@@ -43,8 +43,8 @@
 <p>This file contains three functions that compute <span class="math notranslate nohighlight">\(x[n+1]\)</span>, <span class="math notranslate nohighlight">\(y[n+1]\)</span> 
 and <span class="math notranslate nohighlight">\(z[n+1]\)</span> based on known values of the system <span class="math notranslate nohighlight">\(x[n]\)</span>, 
 <span class="math notranslate nohighlight">\(y[n]\)</span></p>
-<p>The last function implements these functions and gets called from a loop in 
-the solver module.</p>
+<p>The update_system_state function implements these functions and gets called 
+from a loop in the solver module.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="lorenz.finiteDifferences.forward_diff_x">
 <span class="sig-prename descclassname"><span class="pre">lorenz.finiteDifferences.</span></span><span class="sig-name descname"><span class="pre">forward_diff_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lorenz/finiteDifferences.html#forward_diff_x"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lorenz.finiteDifferences.forward_diff_x" title="Permalink to this definition">¶</a></dt>
@@ -161,13 +161,14 @@ these variables at the current time step (<span class="math notranslate nohighli
 </section>
 <section id="module-lorenz.plotting">
 <span id="lorenz-plotting-module"></span><h2>lorenz.plotting module<a class="headerlink" href="#module-lorenz.plotting" title="Permalink to this headline">¶</a></h2>
-<p>Created on Thu Jun 17 08:44:05 2021</p>
-<p>&#64;author: SilvinW</p>
+<p>The main function plotLorenz plots the output of the result provided by 
+solver.solve. The output includes 3 2D plots and 1 3D plot. An internal 
+function _plot2D handles the 2D plots.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="lorenz.plotting.plotLorenz">
 <span class="sig-prename descclassname"><span class="pre">lorenz.plotting.</span></span><span class="sig-name descname"><span class="pre">plotLorenz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vecs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scatter_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lorenz/plotting.html#plotLorenz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lorenz.plotting.plotLorenz" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function that plots the result of the ODE simulation lorenz.solver.solve(…)
-and saves plots to .pdf files if file_name != “”.</p>
+and saves plots to .pdf files if file_name is not empty (“”).</p>
 <p>The plots use the matplotlib.pyplot functionality and the scatter function
 and colourcode the plots based on the velocity of the system.</p>
 <p>The initial condition of the ODE simulation <span class="math notranslate nohighlight">\((x_0, y_0, z_0)\)</span> –  is 
@@ -210,38 +211,30 @@ velocity data stored in vel_vecs.</p>
 </section>
 <section id="module-lorenz.run">
 <span id="lorenz-run-module"></span><h2>lorenz.run module<a class="headerlink" href="#module-lorenz.run" title="Permalink to this headline">¶</a></h2>
-<p>Created on Wed Jun 16 13:33:34 2021</p>
-<p>&#64;author: SilvinW</p>
 <p>From this file you can run the solver and plot the results (without saving the
 plots and data).</p>
-<dl class="simple">
-<dt>Variables that can be changed are:</dt><dd><dl class="simple">
-<dt>The initial conditions <span class="math notranslate nohighlight">\(x[0]\)</span>, <span class="math notranslate nohighlight">\(y[0]\)</span> and <span class="math notranslate nohighlight">\(z[0]\)</span></dt><dd><ul class="simple">
-<li><p>x0</p></li>
-<li><p>y0</p></li>
-<li><p>z0</p></li>
-</ul>
-</dd>
-<dt>The time step <span class="math notranslate nohighlight">\(t_\delta\)</span></dt><dd><ul class="simple">
-<li><p>dt</p></li>
-</ul>
-</dd>
-<dt>The number of iterations <span class="math notranslate nohighlight">\(N\)</span></dt><dd><ul class="simple">
-<li><p>N</p></li>
-</ul>
-</dd>
-<dt>The free variables of the ODE system <span class="math notranslate nohighlight">\(\sigma\)</span>, <span class="math notranslate nohighlight">\(\beta\)</span> and <span class="math notranslate nohighlight">\(\rho\)</span></dt><dd><ul class="simple">
-<li><p>sigma</p></li>
-<li><p>beta</p></li>
-<li><p>rho</p></li>
-</ul>
-</dd>
-</dl>
+<dl>
+<dt>Variables that can be changed are:</dt><dd><p>The initial conditions <span class="math notranslate nohighlight">\(x[0]\)</span>, <span class="math notranslate nohighlight">\(y[0]\)</span> and <span class="math notranslate nohighlight">\(z[0]\)</span>
+- x0
+- y0
+- z0</p>
+<p>The time step <span class="math notranslate nohighlight">\(t_\delta\)</span>
+- dt</p>
+<p>The number of iterations <span class="math notranslate nohighlight">\(N\)</span>
+- N</p>
+<p>The free variables of the ODE system <span class="math notranslate nohighlight">\(\sigma\)</span>, <span class="math notranslate nohighlight">\(\beta\)</span> and 
+<span class="math notranslate nohighlight">\(\rho\)</span>
+- sigma
+- beta
+- rho</p>
 </dd>
 </dl>
 </section>
 <section id="module-lorenz.solver">
 <span id="lorenz-solver-module"></span><h2>lorenz.solver module<a class="headerlink" href="#module-lorenz.solver" title="Permalink to this headline">¶</a></h2>
+<p>File contining solve function that solves the Lorenz Attractor system of ODEs
+using the finiteDifferences module.</p>
+<p>It also times how long the simulation lasted and prints it to the console.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="lorenz.solver.solve">
 <span class="sig-prename descclassname"><span class="pre">lorenz.solver.</span></span><span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.002</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lorenz/solver.html#solve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lorenz.solver.solve" title="Permalink to this definition">¶</a></dt>

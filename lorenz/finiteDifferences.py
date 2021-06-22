@@ -4,8 +4,8 @@ This file contains three functions that compute :math:`x[n+1]`, :math:`y[n+1]`
 and :math:`z[n+1]` based on known values of the system :math:`x[n]`, 
 :math:`y[n]`and :math:`z[n]`
 
-The last function implements these functions and gets called from a loop in 
-the solver module.
+The update_system_state function implements these functions and gets called 
+from a loop in the solver module.
 
 """
 
@@ -101,6 +101,7 @@ def forward_diff_z(beta, x, y, z, dt):
 
 
 def update_system_state(x, y, z, sigma, beta, rho, dt):
+    
     """
 
     Function to calculate the values of :math:`x`, :math:`y`, and :math:`z` 

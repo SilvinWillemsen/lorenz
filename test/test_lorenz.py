@@ -15,7 +15,6 @@ are working with floating-point numbers
 
 import lorenz.solver as ls
 import numpy as np
-import pytest
 
 
 class TestCalulateLorenzAttractor:
@@ -80,8 +79,7 @@ class TestCalulateLorenzAttractor:
                             np.array([-3.924     , -3.85774768]), 
                             np.array([-5.956     , -5.91113061])))
 
-    @pytest.mark.parametrize("x0, y0, z0")    
-    def test_init_cond(self):
-        (x0, y0, z0) = input("Initial conditions: ")
-        xVec, yVec, zVec = ls.solve (x0, y0, z0, 14.0, 13/3, 28.0, 0.002, 10000)
-        assert np.isnan(xVec[-1]) == False
+    # def test_init_cond(self):
+    #     (x0, y0, z0) = input("Initial conditions: ")
+    #     xVec, yVec, zVec = ls.solve (x0, y0, z0, 14.0, 13/3, 28.0, 0.002, 10000)
+    #     assert np.isnan(xVec[-1]) == False
